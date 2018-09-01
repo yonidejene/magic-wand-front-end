@@ -52,6 +52,12 @@ const AppContainer = styled.div`
   display: flex;
 `;
 
+const Layout = styled.div`
+  display: grid;
+  justify-items: center;
+  grid-column-gap: 2vh;
+`;
+
 export default class Pipeline extends React.Component {
   constructor(props) {
     super(props);
@@ -126,18 +132,20 @@ export default class Pipeline extends React.Component {
   render() {
     return (
       <Navbar>
-        <DragDropContext onDragEnd={this.onDragEnd}>
-          <AppContainer>
-            {this.state.columnOrder.map(columnId => {
-              const column = this.state.columns[columnId];
-              const tasks = column.taskIds.map(
-                taskId => this.state.tasks[taskId]
-              );
+        <Layout>
+          <DragDropContext onDragEnd={this.onDragEnd}>
+            <AppContainer>
+              {this.state.columnOrder.map(columnId => {
+                const column = this.state.columns[columnId];
+                const tasks = column.taskIds.map(
+                  taskId => this.state.tasks[taskId]
+                );
 
-              return <Column key={column.id} column={column} tasks={tasks} />;
-            })}
-          </AppContainer>
-        </DragDropContext>
+                return <Column key={column.id} column={column} tasks={tasks} />;
+              })}
+            </AppContainer>
+          </DragDropContext>
+        </Layout>
       </Navbar>
     );
   }

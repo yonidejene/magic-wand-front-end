@@ -1,10 +1,10 @@
 import React from "react";
 import { Layout, Menu as AntMenu } from "antd";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 import styled from "styled-components";
 import LogoPath from "../assets/LongLogo_Black.png";
 
-const { Header: AntHeader, Content } = Layout;
+const { Header: AntHeader, Content: AntContent } = Layout;
 
 //Navbar component takes in content and renders a navbar on top of it
 
@@ -30,8 +30,21 @@ const Logo = styled.img`
   max-width: 250px;
 `;
 
+const Link = styled(RouterLink)`
+  //&&& injects three classes -> one for each &
+  // this prevents use of !important but allows overwriting Ant design classes
+
+  .ant-menu-item {
+    border-bottom: none;
+  }
+
+  &&& {
+    color: black;
+  }
+`;
+
 const Navbar = ({ children }) => (
-  <div>
+  <React.Fragment>
     <Header style={{ background: "white" }}>
       <Logo src={LogoPath} />
       <Menu mode="horizontal" style={{}}>
@@ -46,8 +59,8 @@ const Navbar = ({ children }) => (
         </Menu.Item>
       </Menu>
     </Header>
-    <Content>{children}</Content>
-  </div>
+    <AntContent>{children}</AntContent>
+  </React.Fragment>
 );
 
 export default Navbar;
