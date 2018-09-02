@@ -16,32 +16,44 @@ import Column from "../components/Column.js";
 */
 
 const initialData = {
-  tasks: {
-    "task-1": { id: "task-1", content: "Company #1 description goes here" },
-    "task-2": { id: "task-2", content: "Company #2 description goes here" },
-    "task-3": { id: "task-3", content: "Company #3 description goes here" },
-    "task-4": { id: "task-4", content: "Company #4 description goes here" }
+  companies: {
+    "company-1": {
+      id: "company-1",
+      content: "Company #1 description goes here"
+    },
+    "company-2": {
+      id: "company-2",
+      content: "Company #2 description goes here"
+    },
+    "company-3": {
+      id: "company-3",
+      content: "Company #3 description goes here"
+    },
+    "company-4": {
+      id: "company-4",
+      content: "Company #4 description goes here"
+    }
   },
   columns: {
     "column-1": {
       id: "column-1",
       title: "New Applications",
-      taskIds: ["task-1", "task-2", "task-3", "task-4"]
+      companyIds: ["company-1", "company-2", "company-3", "company-4"]
     },
     "column-2": {
       id: "column-2",
       title: "Pre-Pitch",
-      taskIds: []
+      companyIds: []
     },
     "column-3": {
       id: "column-3",
       title: "Check In Later",
-      taskIds: []
+      companyIds: []
     },
     "column-4": {
       id: "column-4",
       title: "Pitching",
-      taskIds: []
+      companyIds: []
     }
   },
   // Facilitate reordering of the columns
@@ -55,7 +67,6 @@ const AppContainer = styled.div`
 const Layout = styled.div`
   display: grid;
   justify-items: center;
-  grid-column-gap: 2vh;
 `;
 
 export default class Pipeline extends React.Component {
@@ -82,13 +93,13 @@ export default class Pipeline extends React.Component {
     const foreign = this.state.columns[destination.droppableId];
 
     if (home === foreign) {
-      const newTaskIds = Array.from(home.taskIds);
-      newTaskIds.splice(source.index, 1);
-      newTaskIds.splice(destination.index, 0, draggableId);
+      const newCompanyIds = Array.from(home.companyIds);
+      newCompanyIds.splice(source.index, 1);
+      newCompanyIds.splice(destination.index, 0, draggableId);
 
       const newHome = {
         ...home,
-        taskIds: newTaskIds
+        companyIds: newCompanyIds
       };
 
       const newState = {
@@ -104,18 +115,18 @@ export default class Pipeline extends React.Component {
     }
 
     // moving from one list to another
-    const homeTaskIds = Array.from(home.taskIds);
-    homeTaskIds.splice(source.index, 1);
+    const homeCompanyIds = Array.from(home.companyIds);
+    homeCompanyIds.splice(source.index, 1);
     const newHome = {
       ...home,
-      taskIds: homeTaskIds
+      companyIds: homeCompanyIds
     };
 
-    const foreignTaskIds = Array.from(foreign.taskIds);
-    foreignTaskIds.splice(destination.index, 0, draggableId);
+    const foreignCompanyIds = Array.from(foreign.companyIds);
+    foreignCompanyIds.splice(destination.index, 0, draggableId);
     const newForeign = {
       ...foreign,
-      taskIds: foreignTaskIds
+      companyIds: foreignCompanyIds
     };
 
     const newState = {
@@ -137,11 +148,17 @@ export default class Pipeline extends React.Component {
             <AppContainer>
               {this.state.columnOrder.map(columnId => {
                 const column = this.state.columns[columnId];
-                const tasks = column.taskIds.map(
-                  taskId => this.state.tasks[taskId]
+                const companies = column.companyIds.map(
+                  companyId => this.state.companies[companyId]
                 );
 
-                return <Column key={column.id} column={column} tasks={tasks} />;
+                return (
+                  <Column
+                    key={column.id}
+                    column={column}
+                    companies={companies}
+                  />
+                );
               })}
             </AppContainer>
           </DragDropContext>
