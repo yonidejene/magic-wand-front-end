@@ -18,4 +18,4 @@ Ant Design components and DOM elements are modified using a CSS in JS solution c
 All API calls should be handled by [Axios](https://www.npmjs.com/package/axios). 
 
 ## Code Style
-[Prettier](https://prettier.io/) is ran on-commit, which means you can write code in whatever style you want and it will be automatically formatted according to the common style when you run `git commit`.[ESLint](https://eslint.org/) is also included, although all stylistic rules are disabled since Prettier takes care of those.
+[Prettier](https://prettier.io/) is ran on-commit, which means you can write code in whatever style you want and it will be automatically formatted according to the common style when you run `git commit`. [ESLint](https://eslint.org/) is also included, although all stylistic rules are disabled since Prettier takes care of those.
