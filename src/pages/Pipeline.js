@@ -6,7 +6,7 @@ import axios from "axios";
 import Navbar from "../components/Navbar";
 import Column from "../components/Column.js";
 import Spinner from "../components/Spinner/Spinner.js";
-import transformData from "../utils";
+import transformData from "./utils";
 
 const AppContainer = styled.div`
   display: flex;
