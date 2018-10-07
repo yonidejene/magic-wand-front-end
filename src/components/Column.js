@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Droppable } from "react-beautiful-dnd";
-import Company from "./Company.js";
+import Company from "./CompanyCards.js";
 
 const Container = styled.div`
   margin: 8px;
@@ -15,11 +15,17 @@ const Container = styled.div`
 
 const Title = styled.h3`
   padding: 15px;
+  margin-bottom: 0px;
   background-color: #0702d1;
   color: white;
 `;
 const CompanyList = styled.div`
+  height: 70vh;
+  overflow-y: scroll;
   flex-grow: 1;
+  transition: background-color 0.2s ease;
+  background-color: ${props =>
+    props.isDraggingOver ? "lightgrey" : "inherit"};
 `;
 
 export default class Column extends React.Component {
