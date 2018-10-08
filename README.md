@@ -8,6 +8,8 @@ Then start the project with
 
 `yarn start`
 
+Every push to this repo triggers a redeployment. You can access it here: [🔗 Link](https://elegant-aryabhata-e0b6f8.netlify.com/).
+
 ## Folder Structure
 
 All component logic is in /components.
