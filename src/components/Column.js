@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Droppable } from "react-beautiful-dnd";
-import Company from "./CompanyCards.js";
+import CompanyCard from "./Company/CardView/CardView.js";
 
 const Container = styled.div`
   margin: 8px;
@@ -41,7 +41,7 @@ export default class Column extends React.Component {
               isDraggingOver={snapshot.isDraggingOver}
             >
               {this.props.companies.map((company, index) => (
-                <Company key={company.id} company={company} index={index} />
+                <CompanyCard key={company.id} company={company} index={index} />
               ))}
               {provided.placeholder}
             </CompanyList>

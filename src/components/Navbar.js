@@ -31,8 +31,9 @@ const Logo = styled.img`
 `;
 
 const Link = styled(RouterLink)`
-  //&&& injects three classes -> one for each &
-  // this prevents use of !important but allows overwriting Ant design classes
+  /* &&& injects three classes -> one for each &
+  this prevents use of !important but allows overwriting Ant design classes
+  */
 
   .ant-menu-item {
     border-bottom: none;
@@ -46,7 +47,9 @@ const Link = styled(RouterLink)`
 const Navbar = ({ children }) => (
   <React.Fragment>
     <Header style={{ background: "white" }}>
-      <Logo src={LogoPath} />
+      <RouterLink style={{ justifySelf: "start" }} to="/">
+        <Logo src={LogoPath} />
+      </RouterLink>
       <Menu mode="horizontal" style={{}}>
         <Menu.Item key="1">
           <Link to="/pipeline"> Pipeline </Link>

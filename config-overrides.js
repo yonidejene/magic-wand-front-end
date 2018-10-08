@@ -12,7 +12,7 @@ module.exports = function override(config, env) {
     config
   );
   config = rewireLess.withLoaderOptions({
-    modifyVars: { "@primary-color": "#0702d1" },
+    modifyVars: { "@primary-color": "#0702d1", "font-family": "Lato" },
     javascriptEnabled: true
   })(config, env);
   return config;

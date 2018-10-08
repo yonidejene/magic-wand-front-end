@@ -51,7 +51,9 @@ export default class Pipeline extends React.Component {
     const home = this.state.columns[source.droppableId];
     const foreign = this.state.columns[destination.droppableId];
 
-    // re-oredering within same column
+    /****************************************
+      re-oredering within same column
+    *****************************************/
     if (home === foreign) {
       const newCompanyIds = Array.from(home.companyIds);
       newCompanyIds.splice(source.index, 1);
@@ -74,16 +76,16 @@ export default class Pipeline extends React.Component {
       return;
     }
 
-    // moving from one list to another
+    /****************************************
+     moving from one list to another
+     *************************************/
+
     const homeCompanyIds = Array.from(home.companyIds);
     homeCompanyIds.splice(source.index, 1);
     const newHome = {
       ...home,
       companyIds: homeCompanyIds
     };
-
-    // console.log(foreign);
-    //  console.log(draggableId);
 
     axios
       .patch(
